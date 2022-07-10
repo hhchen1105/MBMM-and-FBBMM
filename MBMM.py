@@ -15,7 +15,7 @@ class MBMM:
           The number of EM iterations to perform.
 
         param: array-like of shape (n_features+1, n_components), default=None
-          The parameters of Multivariate Beta distribution
+          The parameters of Multivariate Beta distribution.
 
         tol: float, default=1e-6
           The convergence threshold. EM iterations will stop when the lower bound average gain is below this threshold.

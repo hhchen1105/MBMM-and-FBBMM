@@ -7,20 +7,37 @@ from scipy.special import logsumexp
 
 class MBMM:
     def __init__(self, n_components, n_runs, param, tol = 1e-6, verbose=0, verbose_interval=1):
-        self.n_components = n_components # number of clusters
+        """
+        n_components: int, default=None
+          The number of mixture components.
+
+        n_runs: int, default=None
+          The number of EM iterations to perform.
+
+        param: array-like of shape (n_features+1, n_components), default=None
+          The parameters of Multivariate Beta distribution
+
+        tol: float, default=1e-6
+          The convergence threshold. EM iterations will stop when the lower bound average gain is below this threshold.
+
+        verbose: int, default=0
+          Enable verbose output. If not equal to 0 then it prints each iteration step and log probability.
+
+        verbose_interval: int, default=1
+          Number of iteration done before the next print.
+         
+        """
+        self.n_components = n_components 
         self.n_runs = n_runs
         self.param = param
         self.tol = tol
-        self.pi = np.array([1./self.n_components for i in range(self.n_components)])
+        self.pi = np.array([1./self.n_components for i in range(self.n_components)]) #The weights of each mixture components.
         self.verbose = verbose
         self.verbose_interval = verbose_interval
         
     def get_param(self):
         return (self.param, self.pi)
     
-    def get_pi(self):
-        return self.pi
-
     def fit(self, X):
         '''Estimate model parameters with the EM algorithm.
 

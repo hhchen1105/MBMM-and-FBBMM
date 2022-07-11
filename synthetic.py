@@ -206,6 +206,7 @@ if __name__ == "__main__":
                      transform=plt.gca().transAxes, size=15,
                      horizontalalignment='right')
             plot_num += 1
-       
+    
+    plt.savefig('cluster-cmp-synthetic.pdf')
     plt.show()
 

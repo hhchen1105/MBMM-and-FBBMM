@@ -105,32 +105,31 @@ def initial_param(data, target):
     # ============
     # Initial parameters
     # ============
-    MBMM_param19 = np.array([[1.09588370e+06, 1.42465917e+02, 4.05474548e+04],
-                       [9.06447149e+04, 4.95003602e-02, 6.29934962e+05]])
+    MBMM_param38 = np.array([[1.09717833, 8.04592969, 8.0686254 ],
+                             [2.84798971, 2.20653172, 1.52946912]])
+    
+    FBBMM_param38 = np.array([[3.14190044, 6.35378162, 4.94796333, 3.971114  ],
+                         [8.28131719, 8.89802408, 6.70568243, 3.18620078]])
+    
+    MBMM_param17 = np.array([[4.00195568, 9.09896669, 4.21570771],
+                                 [2.2397298,  2.91100834, 3.6114422 ]])
     
 
-    FBBMM_param19 = np.array([[3.66642644, 7.54841211, 0.10043114, 1.14688753],
-                               [1.21178247, 1.26329   , 0.10032135, 4.33861118]])
-    
-    MBMM_param03 = np.array([[2.3892336,  9.91178983, 6.82128495],
-                     [2.50212478, 8.67081669, 3.0153562 ]])
-    
-    FBBMM_param03 = np.array([[3.01042924, 1.15970268, 3.15086881, 0.10015249],
-                               [0.10014359, 0.98369911, 3.29852921, 0.8037978 ]])
+    FBBMM_param17 = np.array([[9.64563123, 6.51637147, 7.77768709, 3.65455795],
+                                 [2.15407161, 3.84410293, 4.04455582, 8.6491259 ]])
     
     data_dict = data_to_target(data, target)
     
-    data_03, target_03 = smaple_number([0,3], data_dict)
-    data_19, target_19 = smaple_number([1,9], data_dict)
+    data_38, target_38 = smaple_number([3,8], data_dict)
+    data_17, target_17 = smaple_number([1,7], data_dict)
      
-    param = [(data_03, {'n_clusters': 2, 'quantile': .22, 'eps': .16, 'min_samples': 4920,'linkage': "ward", 
-                     'affinity': "euclidean", 'MBMM_param': MBMM_param03, 'FBBMM_param':FBBMM_param03}),
-            (data_19, {'n_clusters': 2, 'quantile': .51, 'eps': .011, 'min_samples': 5, 'linkage': "ward", 
-                       'affinity': "euclidean", 'MBMM_param': MBMM_param19, 'FBBMM_param':FBBMM_param19})]
-    target = [target_03, target_19]
+    param = [(data_38, {'n_clusters': 2, 'quantile': .22, 'eps': .16, 'min_samples': 4140,'linkage': "ward", 
+                     'affinity': "euclidean", 'MBMM_param': MBMM_param38, 'FBBMM_param':FBBMM_param38}),
+            (data_17, {'n_clusters': 2, 'quantile': .35, 'eps': .11, 'min_samples': 2300, 'linkage': "ward", 
+                       'affinity': "euclidean", 'MBMM_param': MBMM_param17, 'FBBMM_param':FBBMM_param17})]
+    target = [target_38, target_17]
     
     return param, target
-
 
 if __name__ == "__main__":
     mnist_data, mnist_target = load_data()
@@ -167,11 +166,6 @@ if __name__ == "__main__":
             ('MBMM', mbmm),
             ('FBBMM', fbbmm))
         
-#         if i_dataset == 0:
-#             target = target_03            
-#         if i_dataset == 1:
-#             target = target_19
-            
         #print result
         if i_dataset == 0:     
             print('number0 and 3:')
